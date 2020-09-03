@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!doctype html>
 <html lang="en">
 
@@ -40,13 +41,11 @@
       }
     }
   </style>
-  <!-- Custom styles for this template -->
-  <link href="jumbotron.css" rel="stylesheet">
 </head>
 
 <body>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
-    <a class="navbar-brand" href="#">Ma bibiliothèque</a>
+    <a class="navbar-brand" href="./index.php">Ma bibiliothèque</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -71,14 +70,14 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-passport"></i> gestion des nationalités</a>
           <div class="dropdown-menu" aria-labelledby="dropdown01">
-            <a class="dropdown-item" href="./listeNationalites.php">liste des nationalités</a>
-            <a class="dropdown-item" href="#">ajouter un nationalité</a>
+            <a class="dropdown-item" href="listeNationalites.php">liste des nationalités</a>
+            <a class="dropdown-item" href="">ajouter un nationalité</a>
           </div>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <button class="btn btn-outline-secondary" type="submit">Search</button>
       </form>
     </div>
   </nav>
