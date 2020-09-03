@@ -1,7 +1,7 @@
 <?php
 include "./header.php";
 require_once "./connectiondpdo.inc.php";
-$req = $Pdo->prepare('SELECT * from nationalite');
+$req = $Pdo->prepare("select n.num, n.libelle as 'libNation', c.libelle as 'libContinent' from nationalite n, continent c where n.numContinent = c.id order by n.num");
 $req->setFetchMode(PDO::FETCH_OBJ);
 $req->execute();
 $lesNationalites = $req->fetchAll();
@@ -25,7 +25,8 @@ if(!empty($_SESSION['message'])){
         <thead>
             <tr class="d-flex">
                 <th scope="col" class="col-md-2">Numéro</th>
-                <th scope="col" class="col-md-8">libellé</th>
+                <th scope="col" class="col-md-5">Libellé</th>
+                <th scope="col" class="col-md-3">Continent</th>
                 <th scope="col" class="col-md-2">Actions</th>
             </tr>
         </thead>
@@ -33,7 +34,8 @@ if(!empty($_SESSION['message'])){
             <?php foreach ($lesNationalites as $nationalite) { ?>
                 <tr class="d-flex">
                     <td class="col-md-2"><?= $nationalite->num ?></td>
-                    <td class="col-md-8"><?= $nationalite->libelle ?></td>
+                    <td class="col-md-5"><?= $nationalite->libNation ?></td>
+                    <td class="col-md-3"><?= $nationalite->libContinent ?></td>
                     <td class="col-md-2">
                     <a href="formNationalite.php?action=Modifier&num=<?= $nationalite->num ?>" class="btn btn-primary"><i class="fas fa-pen"></i></i></a>
                     <a href="#modalSupp" data-message="Voulez vous vraiment supprimer cette nationalité?" data-suppression="valideformNationalite.php?action=Supp&num=<?= $nationalite->num ?>" data-toggle="modal" class="btn btn-danger"><i class="far fa-trash-alt"></i></i></a></td>

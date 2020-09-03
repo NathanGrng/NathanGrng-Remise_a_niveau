@@ -1,5 +1,4 @@
 <?php
-include "./header.php";
 require_once "./connectiondpdo.inc.php";
 $action = $_GET['action']; //soit Ajouter soir Modifier
 if ($action == "Supp") {
@@ -7,17 +6,21 @@ if ($action == "Supp") {
     $req = $Pdo->prepare('delete from nationalite where num =:num');
     $req->bindParam(':num', $num);
     $nb = $req->execute();
-} else if ($action == "Modifier") {
-    $libelle = $_POST['libelle']; // recuperation du libelle entrer dans le formulaire 
-    $num = $_POST['num']; // recuperation du num entrer dans le formulaire si l'action est modifier
-    $req = $Pdo->prepare('update nationalite set libelle= :libelle where num =:num');
-    $req->bindParam(':libelle', $libelle);
-    $req->bindParam(':num', $num);
-} else {
-    $libelle = $_POST['libelle']; // recuperation du libelle entrer dans le formulaire 
-    $req = $Pdo->prepare('insert into nationalite(libelle) value(:libelle)');
-    $req->bindParam(':libelle', $libelle);
-}
+} else{
+    $libelle = $_POST['libelle']; // recuperation du libelle entrer dans le formulaire
+    $continent = $_POST['Continent']; // recuperation du continent choisis dans le formulaire
+    if ($action == "Modifier") {
+        $num = $_POST['num']; // recuperation du num entrer dans le formulaire si l'action est modifier
+        $req = $Pdo->prepare('update nationalite set libelle= :libelle , numContinent= :continent where num =:num');
+        $req->bindParam(':libelle', $libelle);
+        $req->bindParam(':continent', $continent);
+        $req->bindParam(':num', $num);
+    } else { 
+        $req = $Pdo->prepare('insert into nationalite(libelle,numContinent) value(:libelle,:continent)');
+        $req->bindParam(':libelle', $libelle);
+        $req->bindParam(':continent', $continent);
+    }
+} 
 $nb = $req->execute();
 $message = $action == "Supp" ? "suprimer" :($action == "Modifier" ? "modifiée" : "ajoutée");
 

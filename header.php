@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Jekyll v4.1.1">
-  <title>Jumbotron Template · Bootstrap</title>
+  <title>Ma bibiliothèque</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/jumbotron/">
 
@@ -71,7 +71,7 @@
           <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-passport"></i> gestion des nationalités</a>
           <div class="dropdown-menu" aria-labelledby="dropdown01">
             <a class="dropdown-item" href="listeNationalites.php">liste des nationalités</a>
-            <a class="dropdown-item" href="">ajouter un nationalité</a>
+            <a class="dropdown-item" href="formNationalite.php?action=Ajouter">ajouter un nationalité</a>
           </div>
         </li>
       </ul>
