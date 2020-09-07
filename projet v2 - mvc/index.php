@@ -1,5 +1,8 @@
 <?php session_start();
+require "modeles/connectiondpdo.inc.php";
 require_once "vues/header.php";
+require "modeles/Continent.php";
+
 $uc = empty($_GET['uc']) ? "acceuil" : $_GET['uc'];
 switch ($uc) {
     case 'acceuil':
@@ -7,7 +10,7 @@ switch ($uc) {
         break;
 
     case 'continent':
-        # code...
+        require "controllers/continentController.php";
         break;
 
     default:
