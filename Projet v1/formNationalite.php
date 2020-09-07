@@ -1,5 +1,5 @@
 <?php
-include "./header.php";
+require "./header.php";
 require_once "./connectiondpdo.inc.php";
 $action = $_GET['action'];// soit ajouter soit modifier
 if($action=="Modifier"){
@@ -39,4 +39,4 @@ if($action=="Modifier"){
         </div>
     </form>
 </div>
-<?php include "./footer.php"; ?>
+<?php require "./footer.php"; ?>

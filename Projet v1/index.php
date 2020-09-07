@@ -1,4 +1,4 @@
-<?php include "./header.php"; ?>
+<?php require "./header.php"; ?>
   <main role="main">
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
@@ -66,4 +66,4 @@
     </div> <!-- /container -->
 
   </main>
-<?php include "./footer.php"; ?>
+<?php require "./footer.php"; ?>

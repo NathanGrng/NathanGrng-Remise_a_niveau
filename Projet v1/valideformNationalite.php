@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "./connectiondpdo.inc.php";
 $action = $_GET['action']; //soit Ajouter soir Modifier
 if ($action == "Supp") {
