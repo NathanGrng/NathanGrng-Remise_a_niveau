@@ -1,8 +1,10 @@
-<?php session_start();
+<?php
+ob_start();
+session_start();
 require "modeles/connectiondpdo.inc.php";
 require_once "vues/header.php";
 require "modeles/Continent.php";
-
+require "vues/messageFlash.php";
 $uc = empty($_GET['uc']) ? "acceuil" : $_GET['uc'];
 switch ($uc) {
     case 'acceuil':

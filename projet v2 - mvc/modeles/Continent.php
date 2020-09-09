@@ -7,7 +7,7 @@ class Continent
      *
      * @var int
      */
-    private $num;
+    private $id;
 
     /**
      * Libelle du continent
@@ -17,19 +17,32 @@ class Continent
     private $libelle;
 
     /**
-     * Get the value of num
+     * Get the value of id
      */
     public function getNum()
     {
-        return $this->num;
+        return $this->id;
     }
 
+    /**
+     * Set numero du continent
+     *
+     * @param  int  $id  numero du continent
+     *
+     * @return  self
+     */
+    public function setNum(int $num): self
+    {
+        $this->id = $num;
+
+        return $this;
+    }
     /**
      * Lit le libelle
      *
      * @return string
      */
-    public function getLibelle()
+    public function getLibelle(): string
     {
         return $this->libelle;
     }
@@ -40,7 +53,7 @@ class Continent
      * @param string $libelle
      * @return self
      */
-    public function setLibelle(string $libelle)
+    public function setLibelle(string $libelle): self
     {
         $this->libelle = $libelle;
 
@@ -52,9 +65,9 @@ class Continent
      *
      * @return Continent[] tableau d'objet continent
      */
-    public static function findAll()
+    public static function findAll(): array
     {
-        $req = monPdo::getInstance()->prepare("SELECT * FROM `continent`");
+        $req = MonPdo::getInstance()->prepare("Select * from continent");
         $req->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Continent');
         $req->execute();
         $lesResultats = $req->fetchAll();
@@ -67,9 +80,9 @@ class Continent
      * @param integer $id numéro du continent
      * @return Continent objet continent trouvé
      */
-    public static function findById(int $id)
+    public static function findById(int $id): Continent
     {
-        $req = monPdo::getInstance()->prepare("Select * from continent where num= :id");
+        $req = MonPdo::getInstance()->prepare("Select * from continent where id= :id");
         $req->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Continent');
         $req->bindParam(':id', $id);
         $req->execute();
@@ -83,9 +96,9 @@ class Continent
      * @param Continent $continent continent à ajouter
      * @return integer resultat (1 si l'opération a réussi, 0 sinon)
      */
-    public static function add(Continent $continent)
+    public static function add(Continent $continent): int
     {
-        $req = monPdo::getInstance()->prepare("insert into continent(libelle) values(:libelle)");
+        $req = MonPdo::getInstance()->prepare("insert into continent(libelle) values(:libelle)");
         $libelle = $continent->getLibelle();
         $req->bindParam(':libelle', $libelle);
         $nb = $req->execute();
@@ -98,9 +111,9 @@ class Continent
      * @param Continent $continent continent à modifier
      * @return integer resultat (1 si l'opération a réussi, 0 sinon)
      */
-    public static function update(Continent $continent)
+    public static function update(Continent $continent): int
     {
-        $req = monPdo::getInstance()->prepare("update continent set libelle= :libelle where num= :id");
+        $req = MonPdo::getInstance()->prepare("update continent set libelle= :libelle where id= :id");
         $num = $continent->getNum();
         $libelle = $continent->getLibelle();
         $req->bindParam(':id', $num);
@@ -115,27 +128,12 @@ class Continent
      * @param Continent $continent
      * @return integer
      */
-    public static function delete(Continent $continent)
+    public static function delete(Continent $continent): int
     {
-        $req = monPdo::getInstance()->prepare("delete from continent where num= :id");
+        $req = MonPdo::getInstance()->prepare("delete from continent where id= :id");
         $num = $continent->getNum();
         $req->bindParam(':id', $num);
         $nb = $req->execute();
         return $nb;
-    }
-
-
-    /**
-     * Set numero du continent
-     *
-     * @param  int  $num  numero du continent
-     *
-     * @return  self
-     */
-    public function setNum(int $num)
-    {
-        $this->num = $num;
-
-        return $this;
     }
 }
